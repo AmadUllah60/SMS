@@ -24,7 +24,7 @@ function Homepage() {
                     <button className='font-bold bg-yellow-400 text-white w-[30%] p-3'>Remind me</button>
                 </div>
             </div>
-            <img className='min-w-full bac' src={bgImage} alt="background image" />
+            <img className='min-w-full bac' src={bgImage} alt="background" />
         </div>
     </div>
   )

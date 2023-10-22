@@ -8,67 +8,6 @@ import Performance from "./Performance";
 import Announcement from "./Announcement";
 import ChangePassword from "./ChangePassword";
 
-const columns = [
-  { field: "id", headerName: "S/N", width: 90 },
-  {
-    field: "admissionNO",
-    headerName: "Admission No",
-    flex: 1,
-  },
-  {
-    field: "name",
-    headerName: "Name",
-    flex: 1,
-  },
-  {
-    field: "class",
-    headerName: "Class",
-    flex: 1,
-  },
-  {
-    field: "gender",
-    headerName: "Gender",
-    flex: 1,
-  },
-  {
-    field: "edit",
-    headerName: "Edit",
-    flex: 1,
-    renderCell: (params) => (
-      <div>
-        <button
-          className="bg-green-600 p-3 rounded-2xl text-white font-bold text-md hover:scale-125"
-          onClick={() => console.log(params.row)}
-        >
-          Edit
-        </button>
-      </div>
-    ),
-  },
-  {
-    field: "delete",
-    headerName: "Delete",
-    description: "This column has a value getter and is not sortable.",
-    sortable: false,
-    flex: 1,
-
-    valueGetter: (params) =>
-      `${params.row.firstName || ""} ${params.row.lastName || ""}`,
-    renderCell: (params) => (
-      <div>
-        <button
-          className="bg-red-700 p-3 rounded-2xl text-white font-bold text-md hover:scale-125"
-          onClick={() => console.log(params.row)}
-        >
-          Delete
-        </button>
-      </div>
-    ),
-  },
-];
-const rows = [
-  { id: 1, admissionNO: "Snow", name: "Jon", class: 35, gender: "Male" },
-];
 function Dashboard() {
   const [obj, setObj] = useState({
     dashboard: true,
@@ -80,8 +19,6 @@ function Dashboard() {
     announcement: false,
     changePassword: false,
   });
-  const [pages, setPages] = useState("Dashboard");
-  const [currentSection, setCurrentSection] = useState(false);
   return (
     <div>
       <div className=" bg-slate-400 flex">
@@ -105,7 +42,6 @@ function Dashboard() {
                   announcement: false,
                   changePassword: false,
                 });
-                setPages("Dashboard");
               }}
             >
               <button className=" ">Dashboard</button>
@@ -123,7 +59,6 @@ function Dashboard() {
                   announcement: false,
                   changePassword: false,
                 });
-                setPages("Student");
               }}
             >
               <button className="  ">Student</button>
@@ -141,7 +76,6 @@ function Dashboard() {
                   announcement: false,
                   changePassword: false,
                 });
-                setPages("Staff");
               }}
             >
               <button className="  ">Staff</button>
@@ -159,7 +93,6 @@ function Dashboard() {
                   announcement: false,
                   changePassword: false,
                 });
-                setPages("Attendance");
               }}
             >
               <button className=" ">Attendance</button>
@@ -177,7 +110,6 @@ function Dashboard() {
                   announcement: false,
                   changePassword: false,
                 });
-                setPages("Performance");
               }}
             >
               <button className="  ">Performance</button>
@@ -195,7 +127,6 @@ function Dashboard() {
                   announcement: false,
                   changePassword: false,
                 });
-                setPages("CollectFees");
               }}
             >
               <button className="  ">Collect Fees</button>
@@ -213,7 +144,6 @@ function Dashboard() {
                   announcement: true,
                   changePassword: false,
                 });
-                setPages("Announcement");
               }}
             >
               <button className="  ">Announcement</button>
@@ -231,7 +161,6 @@ function Dashboard() {
                   announcement: false,
                   changePassword: true,
                 });
-                setPages("ChangePassword");
               }}
             >
               <button className="contents  ">Change Password</button>
@@ -268,7 +197,6 @@ function Dashboard() {
                           announcement: false,
                           changePassword: false,
                         });
-                        setPages("Student");
                       }}
                     >
                       More Info
@@ -296,7 +224,6 @@ function Dashboard() {
                           announcement: false,
                           changePassword: false,
                         });
-                        setPages("Student");
                       }}
                     >
                       More Info
