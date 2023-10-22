@@ -1,6 +1,10 @@
 import React from "react";
 import { DataGrid } from "@mui/x-data-grid";
 import Box from "@mui/material/Box";
+import Button from "@mui/material/Button";
+import Modal from "@mui/material/Modal";
+import ClearIcon from "@mui/icons-material/Clear";
+import { useForm } from "react-hook-form";
 function Student() {
   const columns = [
     { field: "id", headerName: "S/N", width: 90 },
@@ -62,19 +66,136 @@ function Student() {
   const rows = [
     { id: 1, admissionNO: "Snow", name: "Jon", class: 35, gender: "Male" },
   ];
+
+  const style = {
+    position: "absolute",
+    top: "50%",
+    left: "50%",
+    transform: "translate(-50%, -50%)",
+    bgcolor: "background.paper",
+    border: "2px solid #000",
+    boxShadow: 24,
+    bgcolor: "yellow",
+    p: 4,
+  };
+
+  const [open, setOpen] = React.useState(false);
+  const handleOpen = () => setOpen(true);
+  const handleClose = () => setOpen(false);
+  const { register, handleSubmit } = useForm();
+
+  const addStudent = (data) => {
+    console.log(data);
+  };
+
   return (
     <div>
       <div className="dashboard">
-        <h1 className="mt-5 font-bold">Students</h1>
-        <div className="bg-slate-400 flex p-2 rounded-md gap-2">
-          <h3 className="bg-slate-50 p-1">All Students</h3>
-          <h3 className="bg-slate-50 p-1">Add Shortcut</h3>
-          <h3 className="bg-slate-50 p-1">Upload Students</h3>
+        <div className="bg-gray-500 h-[110px] flex justify-center items-center">
+          <h1 className="font-bold">Students</h1>
         </div>
-        <h3>Registration students</h3>
-        <div className="flex gap-2">
-          <h4>Show</h4>
-          <h4>entries</h4>
+        <div className="bg-yellow-300 h-[50px] flex justify-center items-center">
+          <Button onClick={handleOpen}>Add Student</Button>
+          <Modal
+            open={open}
+            onClose={handleClose}
+            aria-labelledby="modal-modal-title"
+            aria-describedby="modal-modal-description"
+          >
+            <Box
+              sx={style}
+              className="rounded-md  w-[75%] grid overflow-auto"
+            >
+              <form onSubmit={handleSubmit(addStudent)}>
+                <div className="flex justify-end" onClick={handleClose}>
+                  <ClearIcon />
+                </div>
+                <div
+                  className="grid mb-2 justify-between gap-3 gap-y-3 w-full
+               sm:flex"
+                >
+                  <input
+                    type="text"
+                    className="rounded-lg p-2 m-2 sm:m-0 w-full"
+                    placeholder="Name"
+                    {...register("std_name", { required: true })}
+                  />
+
+                  <input
+                    type="number"
+                    className="rounded-lg p-2 m-2 sm:m-0 w-full"
+                    placeholder="Class"
+                    {...register("std_class", { required: true })}
+                  />
+                </div>
+                <div className="grid mb-2 justify-between gap-y-3 gap-x-3 sm:flex">
+                  <input
+                    type="text"
+                    className="rounded-lg p-2 m-2 sm:m-0 w-full"
+                    placeholder="Section"
+                    {...register("std_section", { required: true })}
+                  />
+                  <input
+                    type="text"
+                    className="rounded-lg p-2 m-2 sm:m-0 w-full"
+                    placeholder="Admission Number"
+                    {...register("std_admission_number", { required: true })}
+                  />
+                </div>
+                <div className="grid mb-2 justify-between gap-y-3 gap-x-3 sm:flex">
+                  <input
+                    type="text"
+                    className="rounded-lg p-2 m-2 sm:m-0 w-full"
+                    placeholder="Gender"
+                    {...register("std_gender", { required: true })}
+                  />
+                  <input
+                    type="text"
+                    className="rounded-lg p-2 m-2 sm:m-0 w-full"
+                    placeholder="Date Of Birth"
+                    {...register("std_dob", { required: true })}
+                  />
+                </div>
+                <div className="grid mb-2 justify-between gap-y-3 gap-x-3 sm:flex">
+                  <input
+                    type="text"
+                    className="rounded-lg p-2 m-2 sm:m-0 w-full"
+                    placeholder="Address"
+                    {...register("std_address", { required: true })}
+                  />
+                  <input
+                    type="text"
+                    className="rounded-lg p-2 m-2 sm:m-0 w-full"
+                    placeholder="Phone Number"
+                    {...register("std_phone_no", { required: true })}
+                  />
+                </div>
+                <div className="grid mb-2 justify-between gap-y-3 gap-x-3 sm:flex">
+                  <input
+                    type="text"
+                    className="rounded-lg p-2 m-2 sm:m-0 w-full"
+                    placeholder="Guardian Phone Number"
+                    {...register("std_guardian_phone_no", { required: true })}
+                  />
+                  <input
+                    type="text"
+                    className="rounded-lg p-2 m-2 sm:m-0 w-full"
+                    placeholder="Subjects"
+                    {...register("std_subjects", { required: true })}
+                  />
+                </div>
+
+                <div className="flex justify-center items-center gap-3 py-5">
+                  <button className="bg-red-600 p-3 rounded-md " type="button">
+                    Cancel
+                  </button>
+                  <button className="bg-red-600 p-3 rounded-md" type="submit">
+                    Add Student
+                  </button>
+                </div>
+              </form>
+            </Box>
+          </Modal>
         </div>
         <div>
           <Box sx={{ height: 400, width: "100%" }}>
